@@ -1,17 +1,18 @@
 import classes from './Modal.module.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Card from '../Card/Card';
 
 const Backdrop = props => {
-    return <div className={classes.backdrop} onClick={props.onModalHandler} />;
+    return <div className={classes.backdrop} onClick={props.onClose} />;
 };
 
 const ModalOverlay = props => {
     return (
-        <Card className={classes.modal}>
-            {props.children}
-        </Card>
+        <div className={classes.modal}>
+            <div className={classes.content}>
+                {props.children}
+            </div>
+        </div>
     );
 };
 
@@ -19,11 +20,11 @@ const Modal = props => {
     return (
         <React.Fragment>
             {ReactDOM.createPortal(
-                <Backdrop onModalHandler={props.onModalHandler} />,
+                <Backdrop onClose={props.onClose} />,
                 document.getElementById('backdrop-root')
             )}
             {ReactDOM.createPortal(
-                <ModalOverlay />,
+                <ModalOverlay>{props.children}</ModalOverlay>,
                 document.getElementById('overlay-root')
             )}
         </React.Fragment>
