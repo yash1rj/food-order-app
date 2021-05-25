@@ -4,12 +4,8 @@ import React from 'react';
 const Input = props => {
     return (
         <div className={classes.input}>
-            <label htmlFor={props.id}>{props.label}</label>
-            <input
-                id={props.id}
-                type={props.type}
-                value={props.value}
-                onChange={props.onChange} />
+            <label htmlFor={props.input.id}>{props.label}</label>
+            <input {...props.input} />
         </div>
     );
 };
